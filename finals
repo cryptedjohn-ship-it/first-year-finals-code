@@ -1,0 +1,265 @@
+'''BY: JOHN ERICK ESCRIBA
+========================================'''
+
+
+import time
+import tkinter
+
+# MAIN WINDOW
+window = tkinter.Tk()
+window.title("Python Learning System")
+window.geometry("650x700")
+window.configure(bg="#202020")
+
+# TITLE
+title = tkinter.Label(
+    window,
+    text="PYTHON LEARNING SYSTEM",
+    font=("Arial", 20, "bold"),
+    bg="#202020",
+    fg="white"
+)
+title.pack(pady=15)
+
+subtitle = tkinter.Label(
+    window,
+    text="Learn the 10 Basic Python Topics",
+    font=("Arial", 11),
+    bg="#202020",
+    fg="lightgray"
+)
+subtitle.pack()
+
+# DISPLAY AREA
+display = tkinter.Text(
+    window,
+    height=13,
+    width=60,
+    font=("Consolas", 10),
+    bg="#303030",
+    fg="white",
+    wrap="word"
+)
+display.pack(pady=15)
+
+
+# FUNCTION TO DISPLAY LESSONS
+def show_lesson(topic, explanation, example):
+
+    display.delete("1.0", tkinter.END)
+
+    display.insert(tkinter.END, topic + "\n")
+    display.insert(tkinter.END, "============================\n\n")
+
+    display.insert(tkinter.END, explanation + "\n\n")
+
+    display.insert(tkinter.END, "CODE EXAMPLE:\n")
+    display.insert(tkinter.END, example)
+
+
+# 1. IF / ELIF / ELSE
+def lesson1():
+    show_lesson(
+        "1. IF / ELIF / ELSE",
+        "Used to make decisions based on conditions.",
+        """
+age = 19
+
+if age >= 18:
+    print("Adult")
+elif age >= 13:
+    print("Teenager")
+else:
+    print("Child")"""
+    )
+
+
+# 2. DATA TYPES
+def lesson2():
+    show_lesson(
+        "2. DATA TYPES",
+        "Data types define what kind of information a variable stores.",
+        """name = "John"
+age = 19
+height = 1.73
+is_student = True
+
+print(type(name))
+print(type(age))
+print(type(height))
+print(type(is_student))"""
+    )
+
+
+# 3. OPERATORS
+def lesson3():
+    show_lesson(
+        "3. OPERATORS",
+        "Operators are used to perform mathematical and comparison operations.",
+        """num1 = 10
+num2 = 5
+
+print(num1 + num2)
+print(num1 - num2)
+print(num1 * num2)
+print(num1 / num2)
+print(num1 > num2)"""
+    )
+
+
+# 4. RANGE
+def lesson4():
+    show_lesson(
+        "4. RANGE",
+        "Range generates a sequence of numbers.",
+        """for number in range(1, 6):
+    print(number)
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5"""
+    )
+
+
+# 5. BOOLEAN
+def lesson5():
+    show_lesson(
+        "5. BOOLEAN",
+        "Boolean has only two possible values: True or False.",
+        """is_student = True
+is_absent = False
+
+print(is_student)
+print(is_absent)
+
+print(10 > 5)
+print(10 == 5)"""
+    )
+
+
+# 6. WHILE LOOP
+def lesson6():
+    show_lesson(
+        "6. WHILE LOOP",
+        "Repeats a block of code while a condition is True.",
+        """number = 1
+
+while number <= 5:
+    print(number)
+    number += 1"""
+    )
+
+
+# 7. ARRAYS / LISTS
+def lesson7():
+    show_lesson(
+        "7. ARRAYS / LISTS",
+        "A Python list stores multiple values in one variable.",
+        """students = ["John", "Jesse", "Maria"]
+
+print(students[0])
+
+students.append("Sarah")
+
+print(students)"""
+    )
+
+
+# 8. WHILE TRUE
+def lesson8():
+    show_lesson(
+        "8. WHILE TRUE",
+        "Creates a loop that continues until you use break.",
+        """while True:
+    answer = input("Continue? yes/no: ")
+
+    if answer == "no":
+        break
+
+    print("Continuing...")"""
+    )
+
+
+# 9. TIME
+def lesson9():
+    show_lesson(
+        "9. TIME",
+        "The time module allows Python to work with time and delays.",
+        """import time
+
+print("Starting...")
+
+time.sleep(2)
+
+print("2 seconds have passed!")"""
+    )
+
+
+# 10. COMMENTS
+def lesson10():
+    show_lesson(
+        "10. COMMENTS",
+        "Comments are notes in the code that Python does not execute.",
+        """# This is a single-line comment
+
+name = "John"
+
+# Display the student's name
+print(name)
+
+'''
+This is a
+multiple-line comment.
+'''"""
+    )
+
+
+# LESSON BUTTONS
+lessons = [
+    ("1. IF / ELIF / ELSE", lesson1),
+    ("2. DATA TYPES", lesson2),
+    ("3. OPERATORS", lesson3),
+    ("4. RANGE", lesson4),
+    ("5. BOOLEAN", lesson5),
+    ("6. WHILE LOOP", lesson6),
+    ("7. ARRAYS / LISTS", lesson7),
+    ("8. WHILE TRUE", lesson8),
+    ("9. TIME", lesson9),
+    ("10. COMMENTS", lesson10)
+]
+
+# CREATE BUTTONS
+for name, function in lessons:
+    button = tkinter.Button(
+        window,
+        text=name,
+        command=function,
+        font=("Arial", 10, "bold"),
+        bg="#444444",
+        fg="white",
+        width=25
+    )
+    button.pack(pady=3)
+
+
+# EXIT BUTTON
+def exit_program():
+    window.destroy()
+
+
+exit_button = tkinter.Button(
+    window,
+    text="EXIT PROGRAM",
+    command=exit_program,
+    bg="darkred",
+    fg="white",
+    font=("Arial", 10, "bold")
+)
+exit_button.pack(pady=12)
+
+
+# RUN PROGRAM
+window.mainloop()
